@@ -4,6 +4,14 @@ from sqlalchemy.orm import relationship, declarative_base
 Base = declarative_base()
 
 class Account:
+
+    __tablename__ = 'account'
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, unique=True, index=True)
+
+    stocks = relationship("")
+
     def account_id(self, client_id):
         self.client_id = client_id
     
@@ -13,6 +21,14 @@ class Account:
 
 
 class Transaction:
+
+    __tablename__ = 'transaction'
+
+    id = Column(Integer, primary_key=True, index=True)
+    quantity = Column(Integer)
+
+    
+
     def transaction_id(self, transaction_id):
         self.transaction_id = transaction_id
     
@@ -30,7 +46,4 @@ class Transaction:
     def timestamp(self, day, hours):
         self.day = day
         self.hours = hours 
-
-
-
 
