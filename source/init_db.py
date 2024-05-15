@@ -14,11 +14,13 @@ curseur.execute('''CREATE TABLE IF NOT EXISTS utilisateurs (
                     balance INTEGER
                   )''')
 
-# Exemple d'insertion de données
 curseur.execute("INSERT INTO utilisateurs (account_id, balance) VALUES ('234', 3000)")
 curseur.execute("INSERT INTO utilisateurs (account_id, balance) VALUES ('678', 25)")
 curseur.execute("INSERT INTO utilisateurs (account_id, balance) VALUES ('87','98')")
+curseur.execute("INSERT INTO utilisateurs (account_id, balance) VALUES ('889','9678')")
+curseur.execute("INSERT INTO utilisateurs (account_id, balance) VALUES ('8567','9856')")
+curseur.execute("INSERT INTO utilisateurs (account_id, balance) VALUES ('8787','908')")
 
-# Valider les modifications et fermer la connexion
+
 connexion.commit()
 connexion.close()
