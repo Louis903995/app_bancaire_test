@@ -4,5 +4,3 @@ class Contact:
         self.age = age
         self.montant = montant
         
-
-        
