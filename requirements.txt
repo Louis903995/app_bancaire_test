@@ -1,4 +1,3 @@
 pytest
-requests
-SQLAlchemy
-sqlalchemy
+mock-alchemy
+sqlalchemy<2

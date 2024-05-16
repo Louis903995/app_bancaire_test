@@ -17,7 +17,7 @@ db_url = "sqlite:///bank.db"
 engine = create_engine(db_url)
 
 try:
-    conn = engine.connect
+    conn = engine.connect()
     print("succes!")
 
 except Exception as ex:
