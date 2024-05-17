@@ -17,8 +17,7 @@ curseur.execute('''CREATE TABLE IF NOT EXISTS utilisateurs (
                     balance INTEGER
                   )''')
 
-curseur.execute("INSERT INTO utilisateurs (account_id, balance) VALUES ('234', '3000')")
-curseur.execute("INSERT INTO utilisateurs (account_id, balance) VALUES ('889', '9678')")
+# curseur.execute("INSERT INTO utilisateurs (account_id, balance) VALUES ('234', '3000')")
 
 connexion.commit()
 
@@ -32,10 +31,7 @@ curseur.execute('''CREATE TABLE IF NOT EXISTS transactions (
                     timestamp INTEGER
                   )''')
 
-curseur.execute("INSERT INTO transactions (transaction_id, count_id, amount, type, timestamp) VALUES ('5', '6', '7', '8', '8')")
-curseur.execute("INSERT INTO transactions (transaction_id, count_id, amount, type, timestamp) VALUES ('5', '6', '7', '8', '9')")
-curseur.execute("INSERT INTO transactions (transaction_id, count_id, amount, type, timestamp) VALUES ('5', '6', '7', '8', '9')")
-curseur.execute("INSERT INTO transactions (transaction_id, count_id, amount, type, timestamp) VALUES ('5', '6', '7', '8', '9')")
+# curseur.execute("INSERT INTO transactions (transaction_id, count_id, amount, type, timestamp) VALUES ('5', '6', '7', '8', '8')")
 
 connexion.commit()
 
