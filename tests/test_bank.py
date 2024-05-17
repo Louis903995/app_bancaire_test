@@ -4,7 +4,6 @@ import sys
 import os
 print(sys.path)
 sys.path.append('/home/louis/Documents/app_bancaire_test')
-from source.bank import Base, Account, Transaction
 
 # Ajouter le chemin du dossier contenant le module ou package désiré
 chemin_module = '/home/louis/Documents/app_bancaire_test/source'
@@ -26,4 +25,4 @@ except Exception as ex:
     print("Success!")
 
     Base.metadata
-    
+
