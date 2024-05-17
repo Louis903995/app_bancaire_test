@@ -1,5 +1,10 @@
-# initialise la connexion à la BDD 
+# Initialiser connexion à la BDD
+
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, create_engine
+from sqlalchemy.orm import relationship, declarative_base
 import sqlite3
+
+Base = declarative_base()
 
 # Établir une connexion à la base de données 
 connexion = sqlite3.connect('BDD.db')
@@ -11,16 +16,18 @@ curseur = connexion.cursor()
 curseur.execute('''CREATE TABLE IF NOT EXISTS utilisateurs (
                     id INTEGER PRIMARY KEY,
                     account_id INTEGER,
-                    balance INTEGER
+                    balance INTEGER, 
+                    transaction_id INTEGER,
+                    count_id INTEGER,
+                    amount INTEGER,
+                    type INTEGER,
+                    timestamp INTEGER
                   )''')
 
-curseur.execute("INSERT INTO utilisateurs (account_id, balance) VALUES ('234', 3000)")
-curseur.execute("INSERT INTO utilisateurs (account_id, balance) VALUES ('678', 25)")
-curseur.execute("INSERT INTO utilisateurs (account_id, balance) VALUES ('87','98')")
-curseur.execute("INSERT INTO utilisateurs (account_id, balance) VALUES ('889','9678')")
-curseur.execute("INSERT INTO utilisateurs (account_id, balance) VALUES ('8567','9856')")
-curseur.execute("INSERT INTO utilisateurs (account_id, balance) VALUES ('8787','908')")
-
+curseur.execute("INSERT INTO utilisateurs (account_id, balance, transaction_id, count_id, amount, type, timestamp) VALUES ('234', '3000', '5', '6', '7', '8', '8')")
+curseur.execute("INSERT INTO utilisateurs (account_id, balance, transaction_id, count_id, amount, type, timestamp) VALUES ('889', '9678', '5', '6', '7', '8', '9')")
+curseur.execute("INSERT INTO utilisateurs (account_id, balance, transaction_id, count_id, amount, type, timestamp) VALUES ('889', '9678', '5', '6', '7', '8', '5')")
+curseur.execute("INSERT INTO utilisateurs (account_id, balance, transaction_id, count_id, amount, type, timestamp) VALUES ('889', '9678', '5', '6', '7', '8', '4')")
 
 connexion.commit()
 connexion.close()
