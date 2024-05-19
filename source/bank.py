@@ -1,4 +1,5 @@
 class Account:
+    
     def __init__(self, id, solde_initial=0):
         self.id = id
         self.solde_initial = solde_initial
@@ -10,7 +11,9 @@ class Account:
         self.solde_initial += montant
 
 
+
 class Transaction:
+    
     def __init__(self, transaction_id, account_id, amount, type, timestamp, solde_compte):
         self.transaction_id = transaction_id
         self.account_id = account_id
@@ -20,23 +23,24 @@ class Transaction:
         self.solde_compte = solde_compte
 
     def afficher_infos(self):
-        print(f"Le compte {self.account_id} a fait un {self.type} de {self.amount}$, transaction: {self.transaction_id}, solde compte: {self.solde_compte}$, heure: {self.timestamp}")
+        print(f"Le compte {self.account_id} a fait un {self.type} de {self.amount}$; transaction: {self.transaction_id}; solde du compte: {self.solde_compte}$; heure: {self.timestamp}")
 
     def deposit(self, somme):
         self.solde_compte += somme
     
     def withdraw(self, somme):
-        self.solde_compte -= somme
+        if somme <= self.solde_compte:
+            self.solde_compte -= somme
+        else:
+            print('Solde insuffisant pour effectuer le retrait')
+    
+    # def type(self, )
 
 
 transaction = Transaction(281654, 454564, 100, 'retait', '8h25', 785)
 transaction.afficher_infos()
 print('-----')
-transaction.deposit(15)
-transaction.afficher_infos()
-print('-----')
-transaction.withdraw(100)
-transaction.afficher_infos()
+transaction.withdraw(3000)
 
 
 
