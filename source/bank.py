@@ -1,4 +1,5 @@
 from datetime import datetime
+import random 
 
 class Account:
     def __init__(self, id, solde_compte):
@@ -12,11 +13,10 @@ class Account:
         self.solde_compte += montant
 
     
-
 class Transaction:
-    def __init__(self, account_instance, type, amount, transaction_id):
+    def __init__(self, account_instance, type, amount):
         self.account = account_instance
-        self.transaction_id = transaction_id
+        self.transaction_id = random.randint(100000, 999999)
         self.amount = amount
         self.type = type
         self.timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -49,15 +49,14 @@ class Transaction:
 
 # Exemple d'utilisation
 compte = Account(12345, 1000)
-transaction = Transaction(compte, '', 500, 4561)
+transaction = Transaction(compte, '', '')
 
 
 """
 # Tentative de retrait de 1500$ (devrait échouer)
 transaction.withdraw(500)
 compte.afficher_infos()
-
-# Dépôt de 500$
-transaction.deposit(50)
-compte.afficher_infos()
 """
+# Dépôt de 500$
+transaction.deposit(4000)
+compte.afficher_infos()
