@@ -35,6 +35,7 @@ class Transaction:
         self.amount = amount
         self.type = type
         self.timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        
 
     def info_av(self):
         print(f"Le compte {self.account.id} va faire un {self.type} de {self.amount}$; Transaction n°{self.transaction_id}; heure: {self.timestamp}; solde avant: {self.account.solde_compte}$")
@@ -76,21 +77,17 @@ class Transaction:
 # Exemple d'utilisation
 if __name__ == "__main__":
     # Créer un compte
-    compte = Account.create_account(12345, 1000)
+    compte1 = Account.create_account(1, 0)
+    compte2 = Account.create_account(2, 0)
 
-    # Effectuer des transactions
-    transaction1 = Transaction(compte, 0, '')
-    transaction2 = Transaction(compte, 0, '')
-    transaction3 = Transaction(compte, 0, '')
+    # Dépot initiaux
+    transaction1 = Transaction(compte1, 0, '')
+    transaction1.deposit(100)
 
-    # Dépôt de 500$
-    transaction1.deposit(500)
-    compte.afficher_infos()
+    transaction2 = Transaction(compte2, 0, '')
+    transaction2.deposit(50)
+    
+    compte1.afficher_infos()
+    compte2.afficher_infos()
 
-    # Retrait de 300$
-    transaction2.withdraw(300)
-    compte.afficher_infos()
-
-    # Tentative de retrait de 1500$ (devrait échouer)
-    transaction3.withdraw(1500)
-    compte.afficher_infos()
+    
