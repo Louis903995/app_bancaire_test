@@ -1,48 +1,63 @@
+from datetime import datetime
+
 class Account:
-    
-    def __init__(self, id, solde_initial=0):
+    def __init__(self, id, solde_compte):
         self.id = id
-        self.solde_initial = solde_initial
+        self.solde_compte = solde_compte
     
     def afficher_infos(self):
-        print(f"Numéro du compte: {self.id}, Solde: {self.solde_initial}")
+        print(f"Numéro compte: {self.id}; Solde: {self.solde_compte}")
     
-    def solde_du_compte(self, montant):
-        self.solde_initial += montant
+    def ajuster_solde(self, montant):
+        self.solde_compte += montant
 
-
+    
 
 class Transaction:
-    
-    def __init__(self, transaction_id, account_id, amount, type, timestamp, solde_compte):
+    def __init__(self, account_instance, type, amount, transaction_id):
+        self.account = account_instance
         self.transaction_id = transaction_id
-        self.account_id = account_id
         self.amount = amount
         self.type = type
-        self.timestamp = timestamp
-        self.solde_compte = solde_compte
+        self.timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-    def afficher_infos(self):
-        print(f"Le compte {self.account_id} a fait un {self.type} de {self.amount}$; transaction: {self.transaction_id}; solde du compte: {self.solde_compte}$; heure: {self.timestamp}")
+    def info_av(self):
+        print(f"Le compte {self.account.id} a fait un {self.type} de {self.amount}$; Transaction n°{self.transaction_id}; heure: {self.timestamp}; Solde: {self.account.solde_compte}$")
 
+    def info_ap(self):
+        print(f"Solde après dépôt: {self.account.solde_compte}$")
+        
     def deposit(self, somme):
-        self.solde_compte += somme
-    
+        self.amount = somme
+        self.type = 'dépôt'
+        self.timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        self.info_av()
+        self.account.ajuster_solde(somme)
+        self.info_ap()
+
     def withdraw(self, somme):
-        if somme <= self.solde_compte:
-            self.solde_compte -= somme
+        self.amount = somme
+        self.type = 'retrait'
+        self.timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        self.info_av()
+        if somme <= self.account.solde_compte:
+            self.account.ajuster_solde(-somme)
+            self.info_ap()
         else:
-            print('Solde insuffisant pour effectuer le retrait')
-    
-    # def type(self, )
+            print(f'Solde insuffisant pour effectuer le retrait de {somme}$')
 
 
-transaction = Transaction(281654, 454564, 100, 'retait', '8h25', 785)
-transaction.afficher_infos()
-print('-----')
-transaction.withdraw(3000)
+# Exemple d'utilisation
+compte = Account(12345, 1000)
+transaction = Transaction(compte, '', 500, 4561)
 
 
+"""
+# Tentative de retrait de 1500$ (devrait échouer)
+transaction.withdraw(500)
+compte.afficher_infos()
 
-
-
+# Dépôt de 500$
+transaction.deposit(50)
+compte.afficher_infos()
+"""
