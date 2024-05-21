@@ -1,35 +1,33 @@
-from sqlalchemy import Column, Integer, String, Float, ForeignKey, create_engine
-from sqlalchemy.orm import relationship, declarative_base
 import sqlite3
 
-Base = declarative_base()
-connexion = sqlite3.connect('bank.db')
-curseur = connexion.cursor()
+# Création de la base de données et des tables
+def create_database():
+    conn = sqlite3.connect('bank.db')
+    cursor = conn.cursor()
 
-# Création Account_Table
-curseur.execute('''CREATE TABLE IF NOT EXISTS utilisateurs (
-                    id INTEGER PRIMARY KEY,
-                    account_id INTEGER,
-                    balance INTEGER
-                  )''')
+    # Création de la table Account
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS Account (
+            id INTEGER PRIMARY KEY,
+            solde_compte REAL
+        )
+    ''')
 
-# curseur.execute("INSERT INTO utilisateurs (account_id, balance) VALUES ('234', '3000')")
+    # Création de la table Transaction (notez les guillemets doubles autour du nom de la table)
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS "Transaction" (
+            transaction_id INTEGER PRIMARY KEY,
+            account_id INTEGER,
+            amount REAL,
+            type TEXT,
+            timestamp TEXT,
+            FOREIGN KEY(account_id) REFERENCES Account(id)
+        )
+    ''')
 
-connexion.commit()
+    conn.commit()
+    conn.close()
 
-# Création Transaction_Table
-curseur.execute('''CREATE TABLE IF NOT EXISTS transactions (
-                    id INTEGER PRIMARY KEY,
-                    transaction_id INTEGER,
-                    count_id INTEGER,
-                    amount INTEGER,
-                    type INTEGER,
-                    timestamp INTEGER
-                  )''')
-
-# curseur.execute("INSERT INTO transactions (transaction_id, count_id, amount, type, timestamp) VALUES ('5', '6', '7', '8', '8')")
-
-connexion.commit()
-connexion.close()
-
-
+if __name__ == "__main__":
+    create_database()
+    print("Base de données et tables créées avec succès.")
