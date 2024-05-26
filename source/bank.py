@@ -38,7 +38,7 @@ class Transaction:
         
 
     def info_av(self):
-        print(f"Le compte {self.account.id} va faire un {self.type} de {self.amount}$; Transaction n°{self.transaction_id}; heure: {self.timestamp}; solde avant: {self.account.solde_compte}$")
+        print(f"Le compte {self.account.id} va faire un {self.type} de {self.amount}$; Transaction n°{self.transaction_id}; heure: {self.timestamp}; solde avant dépôt: {self.account.solde_compte}$")
 
     def info_ap(self):
         print(f"Solde après {self.type}: {self.account.solde_compte}$")
@@ -73,6 +73,8 @@ class Transaction:
         ''', (self.transaction_id, self.account.id, self.amount, self.type, self.timestamp))
         conn.commit()
         conn.close()
+    
+    
 
 # Exemple d'utilisation
 if __name__ == "__main__":
@@ -90,4 +92,3 @@ if __name__ == "__main__":
     compte1.afficher_infos()
     compte2.afficher_infos()
 
-    
