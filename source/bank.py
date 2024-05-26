@@ -109,10 +109,12 @@ class Transaction:
     
 
 # Exemple d'utilisation
-if __name__ == "__main__":
+#if __name__ == "__main__":
 
+    """
     # Création d'un compte 
-    compte1 = Account.create_account(1, 50)
+    compte1 = Account.create_account(1, 100)
+    compte2 = Account.create_account(2, 50)
 
     # Consultation du solde
     compte = Account.get_account_by_id(2)
@@ -126,16 +128,18 @@ if __name__ == "__main__":
     retrait = Transaction(compte1, None, 0, '')
     retrait.withdraw(10)
     
-    # Sélectionner un compte
+    # Sélectionner compte
     compte1 = Account.get_account_by_id(1)
     compte2 = Account.get_account_by_id(2)
 
-    # Effectuer un virement de compte1 vers compte2
+    # Effectuer un virement du compte1 vers le compte2
     if compte1 and compte2:
-        transaction = Transaction(compte2, compte1, 30, '')
+        transaction = Transaction(compte1, compte2, 30, '')
         transaction.transfer()
     else:
         print("Un des comptes n'a pas été trouvé.")
+    """
+    
     
 
     
