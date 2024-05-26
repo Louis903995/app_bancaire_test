@@ -81,6 +81,7 @@ class Transaction:
 
     def transfer(self):
         if self.amount <= self.account.solde_compte:
+            self.type = 'virement'
             self.account.ajuster_solde(-self.amount)
             self.dest_account.ajuster_solde(self.amount)
             print(f"Virement de {self.amount}$ effectué avec succès du compte {self.account.id} au compte {self.dest_account.id}.")
@@ -93,8 +94,8 @@ class Transaction:
         cursor = conn.cursor()
         if self.dest_account:
             cursor.execute('''
-                INSERT INTO "Transaction" (transaction_id, account_id, dest_account_id, amount, type, timestamp)
-                VALUES (?, ?, ?, ?, ?, ?)
+                INSERT INTO "Transaction" (transaction_id, account_id, amount, type, timestamp)
+                VALUES (?, ?, ?, ?, ?)
             ''', (self.transaction_id, self.account.id, self.amount, self.type, self.timestamp))
         else:
             cursor.execute('''
@@ -110,38 +111,31 @@ class Transaction:
 # Exemple d'utilisation
 if __name__ == "__main__":
 
-    # création de deux comptes 
-    # compte1 = Account.create_account(1, 50)
-    # compte2 = Account.create_account(2, 100)
+    # Création d'un compte 
+    compte1 = Account.create_account(1, 50)
+
+    # Consultation du solde
+    compte = Account.get_account_by_id(2)
+    compte.afficher_infos()
 
     # Dépôt 
-    # depot1 = Transaction(compte1, None, 0, '')
-    # depot2 = Transaction(compte2, None, 0, '')
-    # depot1.deposit(100)
-    # depot2.deposit(50)
-
-    # Effectuer un dépôt sur le compte sélectionné : 
-    account_id_1 = 1
-    account_id_2 = 2
-    compte1 = Account.get_account_by_id(account_id_1)
-    compte2 = Account.get_account_by_id(account_id_2)
-
+    depot = Transaction(compte1, None, 0, '')
+    depot.deposit(100)
     
+    # Retrait 
+    retrait = Transaction(compte1, None, 0, '')
+    retrait.withdraw(10)
+    
+    # Sélectionner un compte
+    compte1 = Account.get_account_by_id(1)
+    compte2 = Account.get_account_by_id(2)
 
     # Effectuer un virement de compte1 vers compte2
     if compte1 and compte2:
-        transaction = Transaction(compte1, compte2, 20, '')
+        transaction = Transaction(compte2, compte1, 30, '')
         transaction.transfer()
     else:
         print("Un des comptes n'a pas été trouvé.")
     
+
     
-    
-    """
-    #if compte:
-         
-        transaction = Transaction(compte, None, 0, '')
-        transaction.withdraw(10)
-    else:
-        print("Compte non trouvé.")
-    """
