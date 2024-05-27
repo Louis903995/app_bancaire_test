@@ -51,7 +51,6 @@ class Transaction:
         self.type = type
         self.timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         
-
     def info_av(self):
         print(f"Le compte {self.account.id} va faire un {self.type} de {self.amount}$; Transaction n°{self.transaction_id}; heure: {self.timestamp}; solde avant dépôt: {self.account.solde_compte}$")
 
@@ -109,36 +108,37 @@ class Transaction:
     
 
 # Exemple d'utilisation
-#if __name__ == "__main__":
-
+if __name__ == "__main__":
     """
     # Création d'un compte 
     compte1 = Account.create_account(1, 100)
     compte2 = Account.create_account(2, 50)
-
+    
     # Consultation du solde
     compte = Account.get_account_by_id(2)
     compte.afficher_infos()
-
+    
     # Dépôt 
-    depot = Transaction(compte1, None, 0, '')
+    compte = Account.get_account_by_id(4)
+    depot = Transaction(compte, None, 0, '')
     depot.deposit(100)
     
     # Retrait 
-    retrait = Transaction(compte1, None, 0, '')
+    compte = Account.get_account_by_id(7)
+    retrait = Transaction(compte, None, 0, '')
     retrait.withdraw(10)
-    
+    """
     # Sélectionner compte
     compte1 = Account.get_account_by_id(1)
     compte2 = Account.get_account_by_id(2)
-
+    
     # Effectuer un virement du compte1 vers le compte2
     if compte1 and compte2:
-        transaction = Transaction(compte1, compte2, 30, '')
+        transaction = Transaction(compte1, compte2, 50, '')
         transaction.transfer()
     else:
         print("Un des comptes n'a pas été trouvé.")
-    """
+    
     
     
 
