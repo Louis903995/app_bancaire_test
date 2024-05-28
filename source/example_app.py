@@ -1,4 +1,4 @@
-from source.bank import Account, Transaction
+from bank import Account, Transaction
 
 # Exemple d'utilisation
 if __name__ == "__main__":
@@ -31,7 +31,8 @@ if __name__ == "__main__":
     else:
         print("Un des comptes n'a pas été trouvé.")
     """
-
+    
+    """
     ### Tests pour les Dépôts:
     # test_deposit_normal
     compte = Account.get_account_by_id(1)
@@ -65,7 +66,6 @@ if __name__ == "__main__":
     retrait = Transaction(compte, None, 0, '')
     retrait.withdraw(0)
 
-
     ### Tests pour les Transferts:
     compte1 = Account.get_account_by_id(2)
     compte2 = Account.get_account_by_id(2)
@@ -89,17 +89,18 @@ if __name__ == "__main__":
         transaction.transfer()
     else:
         print("Un des comptes n'a pas été trouvé.")
-
+    
     # test_transfer_zero_amount
     if compte1 and compte2:
         transaction = Transaction(compte1, compte2, 0, '')
         transaction.transfer()
     else:
         print("Un des comptes n'a pas été trouvé.")
+    
 
-
-    ### Tests pour la Consultation de Solde (Get Balance):
-
-
+    ## Tests pour la Consultation de Solde (Get Balance):
+    compte = Account.get_account_by_id(2)
+    compte.afficher_infos()
+    """
 
 

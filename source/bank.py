@@ -105,38 +105,3 @@ class Transaction:
         conn.close()
 
     
-# Exemple d'utilisation
-if __name__ == "__main__":
-    """
-    # Création d'un compte 
-    compte1 = Account.create_account(1, 100)
-    compte2 = Account.create_account(2, 50)
-    """
-    # Consultation du solde
-    compte = Account.get_account_by_id(2)
-    compte.afficher_infos()
-    """
-    # Dépôt 
-    compte = Account.get_account_by_id(4)
-    depot = Transaction(compte, None, 0, '')
-    depot.deposit(100)
-    
-    # Retrait 
-    compte = Account.get_account_by_id(7)
-    retrait = Transaction(compte, None, 0, '')
-    retrait.withdraw(10)
-    
-    # Sélectionner compte
-    compte = Account.get_account_by_id(1)
-    
-    # Effectuer un virement du compte1 vers le compte2
-    if compte1 and compte2:
-        transaction = Transaction(compte1, compte2, 50, '')
-        transaction.transfer()
-    else:
-        print("Un des comptes n'a pas été trouvé.")
-    """
-    
-    
-
-    
