@@ -52,7 +52,7 @@ class Transaction:
         self.timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         
     def info_av(self):
-        print(f"Le compte {self.account.id} va faire un {self.type} de {self.amount}$; Transaction n°{self.transaction_id}; heure: {self.timestamp}; solde avant dépôt: {self.account.solde_compte}$")
+        print(f"Le compte {self.account.id} va faire un {self.type} de {self.amount}$; Transaction n°{self.transaction_id}; heure: {self.timestamp}; solde avant : {self.account.solde_compte}$")
 
     def info_ap(self):
         print(f"Solde après {self.type}: {self.account.solde_compte}$")

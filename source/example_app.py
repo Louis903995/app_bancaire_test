@@ -47,12 +47,13 @@ if __name__ == "__main__":
     depot = Transaction(compte, None, 0, '')
     depot.deposit(0)
 
-    
+    """
     ### Tests pour les Retraits: 
     # test_withdraw_normal
     compte = Account.get_account_by_id(2)
     retrait = Transaction(compte, None, 0, '')
     retrait.withdraw(10)
+    """
     # test_withdraw_insufficient_funds
     compte = Account.get_account_by_id(2)
     retrait = Transaction(compte, None, 0, '')
